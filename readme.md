@@ -2,7 +2,7 @@ Description
 -----------
 Need to work on a new feature or bug-fix and want a seperate development environment. Sick of cloning again and again. Sick of making `virtual envs` and running `setup.py develop`. With **mmdev_boostrap**  just clone once and by making using use of `bzr` branches make the most of it. Keep updated for the changes and create seperate environments instantly without any chaos.
 
-<img src="mmdev-bootstrap.png" alt="mmdev_boostrap" width="200" height="200" />
+<img src="demo/mmdev-bootstrap.png" alt="mmdev_boostrap" width="200" height="200" />
 
 **mmdev_bootsrap** automates settting up of `mailman-core`, `mailman-client`, `postorius` and `postorius-standalone` for both `usage` and `development` purposes.
 
@@ -62,7 +62,7 @@ Sample-Usage
 - It would look like this:
 
 
-<img src='data/mmdev_bootstrap.gif' alt="mmdev_bootstrap-usage" height="240" width="320" />
+<img src='demo/mmdev_bootstrap.gif' alt="mmdev_bootstrap-usage" height="240" width="320" />
 
 - It will automatically start `mailman` and `postorius-standalone` for you.
 - Head over to http://127.0.0.1:9090 and enjoy. :smiley:
