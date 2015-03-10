@@ -1,5 +1,10 @@
 # Setup mailman interactively for development without any chaos
 
+###########################################
+#                                         #
+#   author: black-perl aka Ankush Sharma  #
+#                                         #
+###########################################
 import os,sys,subprocess
 import colors
 
@@ -67,7 +72,7 @@ def check_prequisites():
             toInstall.append(package)
     if len(toInstall) != 0:
         # There are some unmet dependencies
-        sys.stdout.write("You need to install the follwing first: \n")
+        sys.stdout.write("You need to install the following first: \n")
         for package in toInstall:
             sys.stdout.write("{0}\n".format(package))
         sys.exit(0)
