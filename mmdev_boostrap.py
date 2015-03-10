@@ -6,7 +6,7 @@
 #                                         #
 ###########################################
 import os,sys,subprocess
-import colors
+import colors,urllib2
 
 # current execution directory
 EXEC_DIR = os.getcwd()
@@ -23,6 +23,20 @@ INSTALL_DIR = None
 # VEs PATHs
 VE_MAILMAN = None # mailman-core-ve
 VE_POSTORIUS = None # postorius-all-ve
+
+
+def internet_on():
+    """
+        Check for internet connection
+    """
+    try:
+        sys.stdout.write('Checking for internet connection\n')
+        response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+        sys.stdout.write(colors.success('Internet is Working\n\n'))
+        return
+    except urllib2.URLError as err: pass
+    sys.stdout.write(colors.error('Internt not available\n'))
+    sys.exit(0)
 
 def is_installed(name):
     """
@@ -189,13 +203,13 @@ def setup(repos,ve_path,source_path):
     os.environ['POSTORIUS_DIR'] = POSTORIUS_DIR
     # set up repo for development
     for repo in repos:
-        sys.stdout.write('Setting up ' + colors.draw('{0}'.format(repo),fg_red=True) + ' for development\n')
+        sys.stdout.write('Setting up ' + colors.draw('{0}'.format(repo),fg_yellow=True) + ' for development\n')
         os.chdir(EXEC_DIR)
         if repo == 'mailman':
             os.system('./mailman_setup.sh')
         else:
             os.system('./postorius_setup.sh')
-        sys.stdout.write( colors.draw('{0}'.format(repo),fg_red=True) + ' up for development\n\n')
+        sys.stdout.write( colors.draw('{0}'.format(repo),fg_yellow=True) + ' up for development\n\n')
 
 def fix_setup():
     """
@@ -231,7 +245,7 @@ def create_dev():
     """
         Make branches in the setup environment
     """
-    sys.stdout.write('Setting up ' + colors.draw('{0}'.format('branches'),fg_red=True) + ' for development at {0}\n'.format(DEVSETUP_DIR))
+    sys.stdout.write('Setting up ' + colors.draw('{0}'.format('branches'),fg_yellow=True) + ' for development at' + colors.warning('{0}\n'.format(DEVSETUP_DIR)))
     os.chdir(DEVSETUP_DIR)
     os.environ['DEVSETUP_DIR'] = DEVSETUP_DIR
     os.system('bzr branch {0}/mailman mailman'.format(CORE_DIR))
@@ -239,12 +253,12 @@ def create_dev():
     os.system('bzr branch {0}/mailman.client mailman.client'.format(POSTORIUS_DIR))
     os.system('bzr branch {0}/postorius_standalone postorius_standalone'.format(POSTORIUS_DIR))
     # Done
-    sys.stdout.write(colors.error('>> ') + 'Branches setup sucessful' + colors.success('Great\n\n'))
+    sys.stdout.write(colors.error('>> ') + 'Branches setup sucessful' + colors.success(' Great\n\n'))
     sys.stdout.write(colors.warning('Installing branches\n'))
     # getting back to execution directory
     os.chdir(EXEC_DIR)
     os.system('./fix_setup.sh')
-    sys.stdout.write(colors.error('>> ') + 'Working environment setup sucessful at ' + colors.warning('{0}'.format(DEVSETUP_DIR)) + colors.success(' Great\n\n'))
+    sys.stdout.write(colors.error('>> ') + 'Working environment setup successful at ' + colors.warning('{0}'.format(DEVSETUP_DIR)) + colors.success(' Great\n\n'))
     sys.stdout.write(colors.success('Happy Hunting :) \n'))
 
 def make_executables():
@@ -253,6 +267,7 @@ def make_executables():
             os.system('chmod +x {0}'.format(_file))
 
 def main():
+    internet_on()
     make_executables()
     set_installation_path()
     check_prequisites()

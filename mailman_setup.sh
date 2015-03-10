@@ -5,5 +5,5 @@ cd $CORE_DIR
 cd mailman
 python setup.py develop
 cd src/mailman
-mailman start
+mailman start 
 deactivate
