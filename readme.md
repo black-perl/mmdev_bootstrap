@@ -11,17 +11,17 @@ Need to work on a new feature or bug-fix and want a seperate development environ
 Setting Up
 -----
 
-	`git clone https://github.com/black-perl/mmdev_bootstrap.git
-	cd mmdev_bootstrap/`
+	git clone https://github.com/black-perl/mmdev_bootstrap.git
+	cd mmdev_bootstrap/
 
 Usage
 -----
 Supply the virtual env folder path as command-line argument. If not supply will create the virtual environments in the current directory.
 
 
-	`
+	
 	python mmdev_boostrap.py <path-for-virtual-envs-installation>
-	`
+	
 
 
 
