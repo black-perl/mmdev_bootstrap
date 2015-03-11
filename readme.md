@@ -61,8 +61,7 @@ Sample-Usage
 - Just wait for **mmdev_boostrap** to interact with you and have a cup of tea. :coffee:
 - It would look like this:
 
-
-<img src='demo/mmdev_bootstrap.gif' alt="mmdev_bootstrap-usage" height="240" width="320" />
+<img src='demo/mmdev_bootstrap.gif' alt="mmdev_bootstrap-usage"/>
 
 - It will automatically start `mailman` and `postorius-standalone` for you.
 - Head over to http://127.0.0.1:9090 and enjoy. :smiley:
